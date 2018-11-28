@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'customer',
+        'passwords' => 'customers',
     ],
 
     /*
@@ -36,9 +36,21 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'admin' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'admins',
+        ],
+        'cs' => [
+            'driver' => 'session',
+            'provider' => 'css',
+        ],
+        'translator' => [
+            'driver' => 'session',
+            'provider' => 'translators',
+        ],
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'customers',
         ],
 
         'api' => [
@@ -65,15 +77,23 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'customers' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\Customer::class,
+        ],
+        'translators' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Translator::class,
+        ],
+        'css' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Cs::class,
+        ],
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*
